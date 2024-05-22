@@ -1,38 +1,50 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Bar } from 'vue-chartjs'
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
+import { reactive } from 'vue'
+import type { ApexOptions } from 'apexcharts'
+import VueApexCharts from 'vue3-apexcharts'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-
-const chartData = ref({
-  labels: ['Stefan Kraft', 'Janne Ahonen', 'Adam Małysz', 'Gregor Schlierenzauer', 'Simon Ammann', 'Kamil Stoch', 'Thomas Morgenstern', 'Matti Nykänen', 'Jens Weissflog', 'Ryoyu Kobayashi'],
-  datasets: [
+const chart = reactive<ApexOptions>({
+  chart: {
+    id: 'vuechart-example',
+    toolbar: {
+      show: false,
+    },
+  },
+  grid: {
+    padding: {
+      left: 32,
+      right: 32,
+    },
+  },
+  xaxis: {
+    categories: ['Stefan Kraft', 'Janne Ahonen', 'Adam Małysz', 'Gregor Schlierenzauer', 'Simon Ammann', 'Kamil Stoch', 'Thomas Morgenstern', 'Matti Nykänen', 'Jens Weissflog', 'Ryoyu Kobayashi'],
+  },
+  series: [
     {
-      label: 'Miejsce 1.',
-      backgroundColor: '#eab308',
+      name: 'Miejsce 1.',
       data: [43, 36, 39, 53, 22, 39, 23, 46, 32, 20],
+      color: '#eab308',
     },
     {
-      label: 'Miejsce 2.',
-      backgroundColor: '#64748b',
+      name: 'Miejsce 2.',
       data: [35, 44, 27, 20, 31, 22, 30, 22, 22, 25],
+      color: '#64748b',
     },
     {
-      label: 'Miejsce 3.',
-      backgroundColor: '#78350f',
+      name: 'Miejsce 3.',
       data: [40, 28, 25, 15, 26, 19, 23, 8, 12, 18],
+      color: '#78350f',
     },
   ],
-  options: {
-    responsive: true,
+    dataLabels: {
+    style: {
+      fontSize: '12px',
+      colors: ['#000000'],
+    },
   },
 })
 </script>
 
 <template>
-  <Bar
-    id="my-chart-id"
-    :data="chartData"
-  />
+  <VueApexCharts type="bar" :options="chart" :series="chart.series" height="60%" width="90%" />
 </template>

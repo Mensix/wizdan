@@ -17,15 +17,16 @@ const chart = reactive<ApexOptions>({
     },
   },
   xaxis: {
-    categories: ['Stefan Kraft', 'Janne Ahonen', 'Adam Małysz', 'Gregor Schlierenzauer', 'Simon Ammann', 'Kamil Stoch', 'Thomas Morgenstern', 'Matti Nykänen', 'Jens Weissflog', 'Ryoyu Kobayashi'],
+    categories: ['Austria', 'Norwegia', 'Niemcy/NRD/RFN', 'Finlandia', 'Polska', 'Japonia', 'Słowenia/Jugosławia', 'Czechy/Czechosłowacja', 'Szwajcaria', 'Kanada', 'Szwecja', 'Włochy', 'USA', 'Francja', 'Rosja'],
   },
   series: [
     {
-      name: 'Liczba podiów',
-      data: [118, 108, 92, 88, 80, 80, 76, 76, 73, 66],
+      name: 'Liczba zwycięstw',
+      data: [324, 184, 181, 166, 107, 102, 97, 36, 33, 14, 7, 7, 3, 1, 1],
+      color: '#eab308',
     },
   ],
-    dataLabels: {
+  dataLabels: {
     style: {
       fontSize: '12px',
       colors: ['#000000'],
@@ -35,5 +36,5 @@ const chart = reactive<ApexOptions>({
 </script>
 
 <template>
-  <VueApexCharts type="bar" :options="chart" :series="chart.series" height="90%" width="90%" />
+  <VueApexCharts type="bar" :options="chart" :series="chart.series" height="60%" width="90%" />
 </template>

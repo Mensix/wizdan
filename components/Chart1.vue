@@ -1,30 +1,40 @@
 <script setup lang="ts">
+import type { ApexOptions } from 'apexcharts'
 import { reactive } from 'vue'
-import { Bar } from 'vue-chartjs'
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from 'chart.js'
-import type { Chart, ChartData } from 'chart.js'
+import VueApexCharts from 'vue3-apexcharts'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-
-const chartData = reactive({
-  labels: ['Gregor Schlierenzauer', 'Matti Nykänen', 'Stefan Kraft', 'Adam Małysz', 'Kamil Stoch', 'Janne Ahonen', 'Jens Weissflog', 'Ryoyu Kobayashi', 'Martin Schmitt', 'Andreas Felder', 'Halvor Egner Granerud'],
-  datasets: [
+const chart = reactive<ApexOptions>({
+  chart: {
+    id: 'vuechart-example',
+    toolbar: {
+      show: false,
+    },
+  },
+  grid: {
+    padding: {
+      left: 64,
+      right: 64,
+    },
+  },
+  xaxis: {
+    categories: ['Gregor Schlierenzauer', 'Matti Nykänen', 'Stefan Kraft', 'Adam Małysz', 'Kamil Stoch', 'Janne Ahonen', 'Jens Weissflog', 'Ryoyu Kobayashi', 'Martin Schmitt', 'Andreas Felder', 'Halvor Egner Granerud'],
+  },
+  series: [
     {
-      label: 'Najwięcej zwycięstw w konkursach PŚ',
-      backgroundColor: '#eab308',
+      name: 'Liczba zwycięstw',
+      color: '#eab308',
       data: [53, 46, 43, 39, 39, 36, 33, 32, 28, 25, 25],
     },
   ],
-  options: {
-    responsive: true,
+    dataLabels: {
+    style: {
+      fontSize: '12px',
+      colors: ['#000000'],
+    },
   },
 })
 </script>
 
 <template>
-  <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  />
+  <VueApexCharts type="bar" :options="chart" :series="chart.series" height="90%" width="90%" />
 </template>
